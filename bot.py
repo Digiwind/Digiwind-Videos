@@ -29,4 +29,4 @@ async def ball(ctx): #can't really put numbers in the command name so we have 8b
     z = random.choice(ballresponses) #choose yes or no, randomly
     await ctx.send(z) #send either yes or no 
 
-bot.run('OTA3MzYzMDQ1OTA5NjE4Njk4.YYmFsA.IeK6l3hJ8IGowGkvQtzxr1HmkT4')
+bot.run('') #put your token here 
