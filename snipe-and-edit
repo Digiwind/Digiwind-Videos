@@ -1,0 +1,45 @@
+import discord
+
+bot = discord.Bot(intents = discord.Intents.default()) #must have message intents enabled in the dev portal
+
+servers = []
+
+@bot.event
+async def on_ready():
+    print(f"We have logged in as {bot.user}.")
+
+sniped_message = None
+
+@bot.event
+async def on_message_delete(message): #not designed for use in more than one server, bot may send deleted messages from one server to another 
+    global sniped_message
+    global sniped_author
+    sniped_message = f"Message: {message.content}"
+    sniped_author = f"Author: <@{message.author.id}>"
+    
+@bot.slash_command(guild_ids = servers, name = "snipe", description = "Gets a deleted message")
+async def snipe(ctx):
+    if sniped_message is None:
+        await ctx.respond("There's nothing to snipe!")
+    else:
+        await ctx.respond(f"{sniped_message}\n{sniped_author}")
+
+new = None
+
+@bot.event
+async def on_message_edit(before, after):
+    global old 
+    global new 
+    global author 
+    old = before.content 
+    new = after.content 
+    author = after.author.id
+
+@bot.slash_command(guild_ids = servers, name = "edit", description = "Returns an edited message") #not designed for use in more than one server, bot may send edited messages from one server to another 
+async def edit(ctx):
+    if new is None:
+        await ctx.respond("There's no edited message to return.")
+    else:
+        await ctx.respond(f"Before: {old}\nAfter: {new}\nAuthor: <@{author}>")
+
+bot.run('token')
