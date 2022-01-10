@@ -8,7 +8,7 @@ from discord.ext.commands import MissingPermissions
 
 bot = discord.Bot()
 
-servers = [896215283298103396]
+servers = []
 
 @bot.slash_command(guild_ids = servers, name = 'timeout', description = "mutes/timeouts a member")
 @commands.has_permissions(moderate_members = True)
@@ -62,4 +62,4 @@ async def unmuteerror(ctx, error):
     else:
         raise error
 
-bot.run('OTAwODE4Mjc1ODcxNjI5MzMz.YXG2ZQ.6QArPtbjtzxAmcX3pmCym7kvCFQ')
+bot.run('token')
