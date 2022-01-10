@@ -29,7 +29,7 @@ async def timeout(ctx, member: Option(discord.Member, required = True), reason: 
     if seconds == None:
         seconds = 0
     duration = timedelta(days = days, hours = hours, minutes = minutes, seconds = seconds)
-    if duration >= timdelta(days = 28): #added to check if time exceeds 28 days
+    if duration >= timedelta(days = 28): #added to check if time exceeds 28 days
         await ctx.respond("I can't mute someone for more than 28 days!", ephemeral = True) #responds, but only the author can see the response
         return
     if reason == None:
