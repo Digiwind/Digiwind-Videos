@@ -1,4 +1,5 @@
 #From: https://youtu.be/sNHEQ3igov0 
+#uses Pycord
 
 import discord
 from discord import Option
