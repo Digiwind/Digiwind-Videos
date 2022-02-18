@@ -13,21 +13,13 @@ servers = []
 
 @bot.slash_command(guild_ids = servers, name = 'timeout', description = "mutes/timeouts a member")
 @commands.has_permissions(moderate_members = True)
-async def timeout(ctx, member: Option(discord.Member, required = True), reason: Option(str, required = False), days: Option(int, max_value = 27, required = False), hours: Option(int, required = False), minutes: Option(int, required = False), seconds: Option(int, required = False)):
+async def timeout(ctx, member: Option(discord.Member, required = True), reason: Option(str, required = False), days: Option(int, max_value = 27, default = 0, required = False), hours: Option(int, default = 0, required = False), minutes: Option(int, default = 0, required = False), seconds: Option(int, default = 0, required = False)): #setting each value with a default value of 0 reduces a lot of the code
     if member.id == ctx.author.id:
         await ctx.respond("You can't timeout yourself!")
         return
     if member.guild_permissions.moderate_members:
         await ctx.respond("You can't do this, this person is a moderator!")
         return
-    if days == None:
-        days = 0
-    if hours == None:
-        hours = 0
-    if minutes == None:
-        minutes = 0
-    if seconds == None:
-        seconds = 0
     duration = timedelta(days = days, hours = hours, minutes = minutes, seconds = seconds)
     if duration >= timedelta(days = 28): #added to check if time exceeds 28 days
         await ctx.respond("I can't mute someone for more than 28 days!", ephemeral = True) #responds, but only the author can see the response
