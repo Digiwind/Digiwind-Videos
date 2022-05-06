@@ -5,7 +5,7 @@ from discord import app_commands
 
 class client(discord.Client):
     def __init__(self):
-        super().__init__()
+        super().__init__(intents = discord.Intents.default())
         self.synced = False #we use this so the bot doesn't sync commands more than once
 
     async def on_ready(self):
