@@ -22,4 +22,4 @@ tree = app_commands.CommandTree(client)
 async def slash2(interaction: discord.Interaction):
     await interaction.response.send_message(f"I am working! I was made with Discord.py!", ephemeral = True) 
 
-aclient.run('token')
+client.run('token')
