@@ -3,7 +3,7 @@
 import discord
 from discord import app_commands 
 
-class client(discord.Client):
+class aclient(discord.Client):
     def __init__(self):
         super().__init__(intents = discord.Intents.default())
         self.synced = False #we use this so the bot doesn't sync commands more than once
@@ -15,8 +15,8 @@ class client(discord.Client):
             self.synced = True
         print(f"We have logged in as {self.user}.")
 
-aclient = client()
-tree = app_commands.CommandTree(aclient)
+client = aclient()
+tree = app_commands.CommandTree(client)
 
 @tree.command(guild = discord.Object(id=guild_id), name = 'tester', description='testing') #guild specific slash command
 async def slash2(interaction: discord.Interaction):
