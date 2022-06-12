@@ -1,4 +1,6 @@
 #discord.py v2.0
+#from https://youtu.be/-oY0k0jU1IE
+
 import discord
 from discord import app_commands
 
