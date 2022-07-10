@@ -21,7 +21,7 @@
     os.remove(f"{interaction.channel.id}.md")
 
 #slash command:
-@tree.command(guild = discord.Object(id=908141823288045568), name = 'transcript', description='Generates a transcript for a ticket') #guild specific slash command
+@tree.command(guild = discord.Object(id=guild_id), name = 'transcript', description='Generates a transcript for a ticket') #guild specific slash command
 async def transcript(interaction: discord.Interaction): 
   if "ticket-for-" in interaction.channel.name:
     await interaction.response.defer()
@@ -51,12 +51,12 @@ class aclient(discord.Client):
         super().__init__(intents = intents)
         self.synced = False #we use this so the bot doesn't sync commands more than once
         self.added = False
-        self.ticket_mod = 992503456894038096
+        self.ticket_mod = role_id
 
     async def on_ready(self):
         await self.wait_until_ready()
         if not self.synced: #check if slash commands have been synced 
-            #await tree.sync(guild = discord.Object(id=908141823288045568)) #guild specific: leave blank if global (global registration can take 1-24 hours)
+            #await tree.sync(guild = discord.Object(id=guild_id)) #guild specific: leave blank if global (global registration can take 1-24 hours)
             self.synced = True
         if not self.added:
             self.add_view(ticket_launcher())
