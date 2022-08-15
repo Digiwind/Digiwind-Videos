@@ -1,5 +1,5 @@
 #uses discord.py 2.0
-#from: link coming soon...
+#from: https://youtu.be/fPlFhYq_2TI
 
 import discord
 from discord import app_commands
